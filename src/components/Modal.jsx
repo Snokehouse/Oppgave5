@@ -2,14 +2,10 @@ import React from 'react';
 
 // Modal delegates formhandling to its parent
 // TODO: Add necessary props to be able to handle addTodo, setFormdata, formData, setModal
-
-const Modal = (/*******skal det være noe her??? ******/) => {
-
+const Modal = () => {
   const handleSubmit = (event) => {
     // TODO: Prevent default form handeling
-    event.preventDefault();
     // TODO: Add todo
-    addTodo();
   };
 
   // Function for handling more than one inputfield
@@ -21,32 +17,26 @@ const Modal = (/*******skal det være noe her??? ******/) => {
     }));
   };
 
-  const handleClose = () => {
-    setModal(false);
-  } 
-
   // TODO: Update console.log with correct function
   // TODO: Add onChange method to input
   // TODO: Add value to input title (make input a "controlled" input)
   // TODO: Add value to input description (make input a "controlled" input)
   // TODO: Handle submitevent on form
 
-
-  // **************lukke funker ikke enda*************@
   return (
     <section id="modal">
       <section className="modal_inner_wrapper">
         <header>
           <h3>New todo</h3>
-          <button type="button" onClick={() => handleClose()}> 
+          <button type="button" onClick={() => console.log('Close modal')}>
             X
-          </button> 
+          </button>
         </header>
-        <form id="todo_form" onsubmit={handleSubmit}>
+        <form id="todo_form">
           <label htmlFor="title">Title</label>
-          <input id="title" name="title" onchange={updateValue} value={FormData.title}/>
+          <input id="title" name="title" />
           <label htmlFor="description">Description</label>
-          <input id="description" name="description" onchange={updateValue} value={FormData.description}/>
+          <input id="description" name="description" />
           <button type="submit">Submit</button>
         </form>
       </section>
