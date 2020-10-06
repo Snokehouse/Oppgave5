@@ -7,7 +7,7 @@ import CompletedItem from './CompletedItem';
 // TODO: Loop todo list (todos)
 // TODO: Add necessary props to <Todo /> item to be able to handle removeTodo and completeTodo (prop drilling)
 
-const CompletedList = ({completedTodos, removeTodo, completeTodo}) => <ul id="todos">
+const CompletedList = ({completedTodos}) => <ul id="todos">
         {completedTodos && completedTodos.length > 0 && completedTodos.map((todo) => (
             <CompletedItem
                 key={todo.id}

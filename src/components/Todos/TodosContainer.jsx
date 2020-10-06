@@ -63,6 +63,7 @@ const TodosContainer = () => {
         name="New todo"
         clickHandler={() => setModal(!modal)}
       />
+      <Title title="Mine todos" />
       {todos && todos.length < 1 ? (<p>Ingen todos</p>) : (<TodoList 
           removeTodo={removeTodo}
           todos={todos}
