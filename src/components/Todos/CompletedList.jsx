@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoItem from './TodoItem';
+import CompletedItem from './CompletedItem';
 
 // TODO: Add prop for todo list
 // TODO: Add prop for removeTodo 
@@ -7,16 +7,14 @@ import TodoItem from './TodoItem';
 // TODO: Loop todo list (todos)
 // TODO: Add necessary props to <Todo /> item to be able to handle removeTodo and completeTodo (prop drilling)
 
-const Todos = ({todos, removeTodo, completeTodo}) => <ul id="todos">
-        {todos && todos.length > 0 && todos.map((todo) => (
-            <TodoItem
+const CompletedList = ({completedTodos, removeTodo, completeTodo}) => <ul id="todos">
+        {completedTodos && completedTodos.length > 0 && completedTodos.map((todo) => (
+            <CompletedItem
                 key={todo.id}
                 todo={todo}
-                removeTodo={removeTodo}
-                completeTodo={completeTodo}
             />
         ))}
 
     </ul>;
 
-export default Todos;
+export default CompletedList;

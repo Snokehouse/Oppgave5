@@ -1,29 +1,44 @@
 import React, { useState } from 'react';
 import Button from './TodoButton';
+import Modal from '../Modal';
+import TodoList from './TodoList';
+import CompletedList from './CompletedList';
+import Title from '../Title';
 
 // TODO: Create CompletedList and CompletedItem components (they look like TodoList and TodoItem)
 // TODO: Import Modal, TodoList, CompletedList, Title
 
 const TodosContainer = () => {
   // TODO: Set default state for show/hide "modal"
+  const [modal, setModal] = useState(false);
   // TODO: Set default state for formData => {key: value, key:value}
+  const [formData, setFormData] = useState({title:"", description: ""});
   // TODO: Set default state for todos
+  const [todos, setTodos] = useState([]);
   // TODO: Set default state for completed todos
+  const [completedTodos, setCompletedTodos] = useState([]);
 
   const addTodo = () => {
     // TODO: Add todo to todoslist (update state)
+    setTodos((prev) => [{id: todos.length, created: new Date(), ...formData}, ...prev]);
     // TODO: Close modal (update state)
+    setModal(!modal);
   };
 
   const removeTodo = (id) => {
     // TODO: Filter out todo with id
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
     // TODO: Update todos with new list (update state)
+    setTodos(updatedTodos);
   };
 
   const completeTodo = (id) => {
     // TODO: Find todoItem
+    const todoItem = todos.filter((todo) => todo.id === id);
     // TODO: RemoveTodoItem from todos (update state)
+    removeTodo(id);
     // TODO: Update completedlist with todoItem (update state)
+    setCompletedTodos((prev) => [...todoItem, ...prev]);
   };
 
   // TODO: Use <Modal /> with necessary props to handle addTodo, formdata and modal visbility
@@ -36,13 +51,28 @@ const TodosContainer = () => {
 
   return (
     <div className="todosWrapper">
-      <p>Modal goes here</p>
+      {modal &&(
+        <Modal 
+          addTodo={addTodo}
+          setFormData={setFormData}
+          formData={formData}
+          setModal={setModal}
+        />
+      )}
       <Button
         name="New todo"
-        clickHandler={() => console.log('Handle modal')}
+        clickHandler={() => setModal(!modal)}
       />
-      <p>Ingen todos || Title and TodoList</p>
-      <p>Ingen completed || CompletedList</p>
+      {todos && todos.length < 1 ? (<p>Ingen todos</p>) : (<TodoList 
+          removeTodo={removeTodo}
+          todos={todos}
+          completeTodo={completeTodo}
+        />
+      )}
+      {completedTodos && completedTodos.length < 1 ? (<p>Ingen todos</p>) : (<CompletedList 
+          completedTodos={completedTodos}
+        />
+      )}
     </div>
   );
 };

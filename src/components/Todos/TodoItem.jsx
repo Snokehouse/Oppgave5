@@ -6,15 +6,15 @@ import React from 'react';
 // TODO: Add clickhandler on id="complete"
 // TODO: Add clickhandler on id="remove"
 
-const TodoItem = () => (
+const TodoItem = ({todo, completeTodo, removeTodo}) => (
   <article className="card">
     <header>
-      <h2>Title</h2>
-      <p>CreatedDate</p>
+      <h2>{todo.title}</h2>
+      <p>{todo.created.toLocaleString('no-NB')}</p>
     </header>
     <section>
-      <button id="complete">Complete</button>
-      <button id="remove">Remove</button>
+      <button id="complete" onClick={() =>completeTodo(todo.id)}>Complete</button>
+      <button id="remove" onClick={() =>removeTodo(todo.id)}>Remove</button>
     </section>
   </article>
 );
